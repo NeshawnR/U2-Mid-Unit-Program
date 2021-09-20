@@ -18,10 +18,54 @@ Total Earnings: $1184.38
 
  */
 
+import javax.swing.*;
+import java.text.DecimalFormat;
 public class SalesCommission {
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
+
+     double hourlyRate = getInput ("What is your hourly Rate?");
+    double hoursWorked = getInput ("How many hours have you worked this week?");
+     double sales = getInput ("What is the sales?");
+     double commissionPercent = getInput ("What is the commission percent");
+
+     double hourlyPay = hourlyPay (hourlyRate , hoursWorked);
+     double commission = commission (sales, commissionPercent);
+     double totalPay = totalPay(hourlyPay, commission);
+
+     output(totalPay);
 
     }
 
-}
+    public static double getInput(String prompt){
+
+    return Double.parseDouble(JOptionPane.showInputDialog(prompt));
+
+    }
+
+    public static double hourlyPay(double hourlyRate, double hoursWorked){
+
+        return hourlyRate * hoursWorked;
+
+    }
+
+    public static double commission(double sales, double commissionPercent){
+
+        return sales * (commissionPercent/100.00);
+
+    }
+
+    public static double totalPay(double hourlyPay, double commission){
+
+        return hourlyPay + commission;
+
+    }
+
+    public static void output(double totalPay){
+        DecimalFormat round = new DecimalFormat("#,##.00");
+        JOptionPane.showMessageDialog(null, "The total price is " + round.format(totalPay));
+    }
+
+
+    }
+
